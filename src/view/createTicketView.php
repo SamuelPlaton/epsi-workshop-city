@@ -16,20 +16,19 @@
             <div class="form-group flex flex-col my-2">
                 <label for="category" class=" form-control-label lg:text-lg mb-2">Sélectionnez une catégorie</label>
                 <select onchange="openPopup()"" name="category" id="category" class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
-                    <option value="0">Catégorie #0</option>
-                    <option value="1">Catégorie #1</option>
-                    <option value="2">Catégorie #2</option>
-                    <option value="3">Catégorie #3</option>
+                    <?php foreach($categories as $row){
+                        echo "<option value='".$row['identifier']."'>".$row['sentence']."</option>";
+                    };
+                    ?>
                 </select>
-                </div>
             </div>
             <div class="form-group flex flex-col my-2">
                 <label for="subcategory" class=" form-control-label lg:text-lg mb-2">Sélectionnez une sous-catégorie</label>
                 <select name="subcategory" id="subcategory" class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
-                    <option value="0">Catégorie #0</option>
-                    <option value="1">Catégorie #1</option>
-                    <option value="2">Catégorie #2</option>
-                    <option value="3">Catégorie #3</option>
+                    <?php foreach($subCategories as $row){
+                        echo "<option value='".$row['identifier']."'>".$row['sentence']."</option>";
+                    };
+                    ?>
                 </select>
             </div>
             <div class="form-group flex flex-col my-2">
@@ -46,8 +45,10 @@
                     En cochant cette case, je certifie sur l'honneur la véracité de mes propos et j'accepte de fournir mes coordonnées GPS.
                 </label>
             </div>
+            <input type="text" id="positionX" name="positionX" class="hidden" required>
+            <input type="text" id="positionY" name="positionY" class="hidden" required>
             <div class="text-center mt-5">
-                <button id="submit-button" type="submit" class="text-white py-2 px-4 rounded w-50 m-auto text-lg">
+                <button id="submit-button" name="submit-button" type="submit" class="text-white py-2 px-4 rounded w-50 m-auto text-lg">
                     Poster le ticket
                 </button>
             </div>
@@ -58,5 +59,12 @@
 <script>
     function openPopup(){
         document.getElementById("tickets-close-popup").style.display = "block";
+    }
+
+    // Retrieve and settle geolocations
+    window.navigator.geolocation.getCurrentPosition(successCallback, console.log);
+    function successCallback(data){
+        document.getElementById('positionX').value = data.coords.latitude;
+        document.getElementById('positionY').value = data.coords.longitude;
     }
 </script>
