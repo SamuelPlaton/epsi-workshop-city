@@ -8,13 +8,14 @@
     </head>
     <body>
         <?php include('components/header.php')?>
+        <?php include('components/closeTicketsPopup.php')?>
         <form id="post-ticket-form" action="" method="post" enctype="multipart/form-data" class="m-5 lg:w-1/2 lg:mx-auto">
             <div class="form-group flex flex-col my-2">
                 <input type="text" id="title" name="title" placeholder="Entrez le titre du ticket..." class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
             </div>
             <div class="form-group flex flex-col my-2">
                 <label for="category" class=" form-control-label lg:text-lg mb-2">Sélectionnez une catégorie</label>
-                <select name="category" id="category" class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
+                <select onchange="openPopup()"" name="category" id="category" class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
                     <option value="0">Catégorie #0</option>
                     <option value="1">Catégorie #1</option>
                     <option value="2">Catégorie #2</option>
@@ -54,3 +55,8 @@
     </body>
 </html>
 
+<script>
+    function openPopup(){
+        document.getElementById("tickets-close-popup").style.display = "block";
+    }
+</script>
