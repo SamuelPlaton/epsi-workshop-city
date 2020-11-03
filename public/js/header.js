@@ -1,6 +1,5 @@
 function openMenuBar(){
     document.getElementById("burgermenu").style.transform = "translateX(0%)";
-    console.log('opened');
     document.getElementById("hidebar").style.display = "block";
 }
 function closeMenuBar(){
