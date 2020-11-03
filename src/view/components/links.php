@@ -11,7 +11,7 @@
 
 <!-- Custom CSS -->
 <link href="../../../public/scss/style.scss" rel="stylesheet" media="all">
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <meta name="Content-Type" content="UTF-8">
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
