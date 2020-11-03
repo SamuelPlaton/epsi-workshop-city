@@ -453,7 +453,7 @@
                     widget.removeClass('pull-right');
                 }
 
-                // find the first parent element that has a non-static css positioning
+                // find the first parent element that has a non-static scss positioning
                 if (parent.css('position') === 'static') {
                     parent = parent.parents().filter(function () {
                         return $(this).css('position') !== 'static';

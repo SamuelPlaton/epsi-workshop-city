@@ -1,0 +1,31 @@
+/*
+* Project Name : EPSI Workshop 1 - City+
+* File : style.css
+* Handle custom CSS
+*/
+
+/* Header */
+#header{
+    background: linear-gradient(to right, #63c76a, #63c76a, #a2caa5);
+}
+
+#header .application-icon{
+    width: 3rem;
+}
+
+#header #burgermenu{
+     transform: translateX(-105%); transition: all 300ms ease-out; background: linear-gradient(to bottom, #63c76a, #63c76a, #a2caa5);
+ }
+
+#header #burgermenu .application-icon{
+    width: 6rem;
+}
+
+#header #burgermenu .link{
+    width: 10rem;
+}
+
+/* Post ticket */
+#post-ticket-form #submit-button{
+  background-color: #63c76a;
+}
