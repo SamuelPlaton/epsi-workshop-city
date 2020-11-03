@@ -18,6 +18,8 @@
             <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
         </svg>
     </button>
+    <!-- Background menu -->
+    <div id="hidebar" class="fixed h-screen w-screen bg-opacity-50 mx-4 top-0 bg-black hidden"> </div>
     <!-- Hidden menu bar -->
     <div id="burgermenu" class="fixed top-0 -ml-4 w-1/2 lg:w-1/4 h-screen" >
         <div class="flex justify-between">
