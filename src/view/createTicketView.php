@@ -8,14 +8,9 @@
     </head>
     <body>
         <?php include('components/header.php')?>
-        <form id="post-ticket-form" action="" method="post" enctype="multipart/form-data" class="m-5 w-2/3 lg:w-1/2 mx-auto">
+        <form id="post-ticket-form" action="" method="post" enctype="multipart/form-data" class="m-5 lg:w-1/2 lg:mx-auto">
             <div class="form-group flex flex-col my-2">
-                <label for="title" class="form-control-label lg:text-lg mb-2">Sujet</label>
-                <input type="text" id="title" name="title" placeholder="Entrez le sujet du ticket..." class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
-            </div>
-            <div class="form-group flex flex-col my-2">
-                <label for="description" class=" form-control-label lg:text-lg mb-2">Description</label>
-                <textarea name="description" id="description" rows="3" placeholder="Entrez une description..." class="form-control lg:w-2/3 border-solid border-2 border-gray rounded-lg p-1"></textarea>
+                <input type="text" id="title" name="title" placeholder="Entrez le titre du ticket..." class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
             </div>
             <div class="form-group flex flex-col my-2">
                 <label for="category" class=" form-control-label lg:text-lg mb-2">Sélectionnez une catégorie</label>
@@ -35,6 +30,10 @@
                     <option value="2">Catégorie #2</option>
                     <option value="3">Catégorie #3</option>
                 </select>
+            </div>
+            <div class="form-group flex flex-col my-2">
+                <label for="description" class=" form-control-label lg:text-lg mb-2">Description</label>
+                <textarea name="description" id="description" rows="3" placeholder="Entrez une description..." class="form-control lg:w-2/3 border-solid border-2 border-gray rounded-lg p-1"></textarea>
             </div>
             <div class="form-group flex flex-col my-2">
                 <label for="file-multiple-input" class=" form-control-label lg:text-lg mb-2">Ajoutez jusqu'à 5 images</label>
