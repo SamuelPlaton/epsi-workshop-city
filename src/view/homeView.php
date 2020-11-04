@@ -81,6 +81,8 @@ $tickets = [
 	</style>
 </head>
 <body style="background: #EFEFEF">
+<!-- Toastify Script -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<?php include('components/header.php')?>
     <div class="content">
         <div class="title">Tickets à proximité (50m)</div>
@@ -129,6 +131,21 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script rel="script">
+
+    // If user signed up before, fill
+    var url = new URL(window.location.href);
+    var sent = url.searchParams.get("sent");
+    if(sent){
+        Toastify({
+            text: "Ticket envoyé",
+            backgroundColor: "linear-gradient(to right, #0071bb, #4a9ace)",
+            className: "success",
+            gravity: "top",
+            duration: 2000,
+            close: true,
+        }).showToast();
+    }
+
     jQuery(function ($){
         $(document).ready(function() {
             $('#fullImage').css('display', 'none');

@@ -1,0 +1,25 @@
+{
+  "name": "city",
+  "version": "1.0.0",
+  "description": "Package for the City+ WebApp",
+  "main": "index.js",
+  "dependencies": {
+    "tailwindcss": "^1.9.6",
+    "toastify": "^2.0.1",
+    "toastify-js": "^1.9.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SamuelPlaton/epsi-workshop-city.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SamuelPlaton/epsi-workshop-city/issues"
+  },
+  "homepage": "https://github.com/SamuelPlaton/epsi-workshop-city#readme"
+}
