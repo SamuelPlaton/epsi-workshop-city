@@ -1,4 +1,4 @@
 <?php
-// Load Register page
-require('src/controller/signupController.php');
+
+require('src/model/signinModel.php');
 
