@@ -4,7 +4,7 @@ session_start();
 
 // Home controller, charged to retrieve close tickets and settle the home page
 require('../controller/adminController.php');
-$title = "Mes tickets";
+$title = "Admin";
 
 $bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
 

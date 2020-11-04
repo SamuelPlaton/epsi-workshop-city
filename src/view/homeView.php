@@ -100,7 +100,7 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
             <a href="#" style="padding: 5px 10px; width: 100%;background: #63c76a;color: white;display: block;text-align: center">
                 Créer un ticket
             </a>
-            <a href="#" style="padding: 5px 10px; width: 100%;background: #2980b9;color: white;display: block;text-align: center;margin-top: 5px">
+            <a href="myTicketsModel.php" style="padding: 5px 10px; width: 100%;background: #2980b9;color: white;display: block;text-align: center;margin-top: 5px">
                 Mes tickets
             </a>
         </div>

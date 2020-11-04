@@ -23,9 +23,9 @@
         echo '<div> </div>';
     } ?>
     <!-- Background menu -->
-    <div id="hidebar" class="fixed h-screen w-screen bg-opacity-50 mx-4 top-0 bg-black hidden"> </div>
+    <div id="hidebar" class="fixed h-screen w-screen bg-opacity-50 mx-4 top-0 bg-black hidden z-40"> </div>
     <!-- Hidden menu bar -->
-    <div id="burgermenu" class="fixed top-0 -ml-4 w-2/3 lg:w-1/4 h-screen" >
+    <div id="burgermenu" class="fixed top-0 -ml-4 w-2/3 lg:w-1/4 h-screen z-50" >
         <div class="flex justify-between">
             <button type="button">
                 <img class="application-icon m-4" src="../../public/images/icon.png" alt="icon logo" />
