@@ -86,31 +86,8 @@ $tickets = [
 	<?php include('components/header.php')?>
     <div class="content">
         <div class="title">Tickets à proximité (50m)</div>
-        <div class="row-cust">
-            <?php foreach ($tickets as $ticket) { ?>
-                <div class="column" style="background:white">
-                    <div style="padding:10px">
-                        <p><b>Nature</b>: <?= $ticket['nature'] ?></p>
-                        <p><b>Problème</b>: <?= $ticket['probleme'] ?></p>
-                        <div style="text-align: center;margin-top: 10px">
-	                        <?php foreach ($ticket['imgs'] as $img) { ?>
-                                  <img onclick="openImage('<?= $img ?>')" src="<?= $img ?>" alt="" style="max-width: 150px;max-height: 150px;height: 150px;width: 150px; display: inline-block" />
-	                        <?php } ?>
-                        </div>
-                    </div>
-                    <div style="width: 100%;height:1px;background: rgba(0,0,0,0.5)"></div>
-                    <div style="padding: 10px">
-                        <div style="float: left">
-                            <button><span class="material-icons" style="vertical-align: middle">flag</span></button>
-                        </div>
-                        <div style="float: right">
-                            <button style="margin-right: 10px"><span class="material-icons" style="vertical-align: middle;">thumb_down</span></button>
-                            <button><span class="material-icons" style="vertical-align: middle">thumb_up</span></button>
-                        </div>
-                        <div style="clear:both"></div>
-                    </div>
-                </div>
-            <?php } ?>
+        <div class="row-cust" id="tickets">
+            <!-- Généré par JS -->
         </div>
         <div id="fullImage" class="fullImage" onclick="closeImage()" style="display: none">
             <img src="" id="fullImageSrc" />
@@ -131,7 +108,7 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script rel="script">
-
+    var user_id = <?= $_SESSION['idUser'] ?>;
     // If user signed up before, fill
     var url = new URL(window.location.href);
     var sent = url.searchParams.get("sent");
@@ -154,6 +131,7 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
                 calculHeight();
             })
             calculHeight();
+            refreshTickets();
         });
         function calculHeight() {
             if ($("body").height() > $(window).height()) {
@@ -171,6 +149,53 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
     }
     function closeImage() {
         jQuery('#fullImage').css('display', 'none');
+    }
+    function refreshTickets() {
+        var coordsTest = { long: -1.548970890971788, lat: 47.19398987251469 }; // A utiliser lors des tests
+        window.navigator.geolocation.getCurrentPosition(successCallback, console.log);
+        function successCallback(cb){
+            var coordsUser = { long: cb.coords.longitude, lat: cb.coords.latitude };
+            jQuery.ajax({
+                type: "post",
+                url: "../controller/getTicketsProximity.php",
+                data: coordsUser,
+                success: function(data) {
+                    const elem = $("#tickets");
+                    elem.empty();
+                    data = JSON.parse(data);
+                    if (data.length === 0) {
+                        // TODO : Afficher un message à l'utilisateur
+                    }
+                    for (var k in data) {
+                        const v = data[k];
+                        var imgSrc = '';
+                        for(var i = 0; i < v['nbImg']; i++) {
+                            var src = v['data'] + i + '.jpg';
+                            imgSrc += `<img onclick="openImage('${src}')" src="${src}" alt="" style="max-width: 150px;max-height: 150px;height: 150px;width: 150px; display: inline-block" />`;
+                        }
+                        elem.append(`<div class="column" style="background:white">
+                    <div style="padding:10px">
+                        <p style="text-align: center;font-size: 16px;font-weight: bold">${v['cat_sentence']}</p>
+                        <p style="text-align: center;font-size: 14px">${v['sub_sentence']}</p>
+                        <div style="text-align: center;margin-top: 10px">
+                            ${imgSrc}
+                        </div>
+                    </div>
+                    <div style="width: 100%;height:1px;background: rgba(0,0,0,0.5)"></div>
+                    <div style="padding: 10px">
+                        <div style="float: left">
+                            <button class="btn-report"><span class="material-icons" style="vertical-align: middle;color:#f90c1c">flag</span></button>
+                        </div>
+                        <div style="float: right">
+                            <button class="btn-vote"><span class="material-icons" style="vertical-align: middle;color:black">exposure_plus_1</span></button>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                </div>`);
+                    }
+                }
+            })
+        }
     }
 </script>
 </html>
