@@ -2,9 +2,9 @@
 
 // If form is posted, send a ticket to the database
 if( $_POST && isset($_POST["submit-button"])) {
-    $idUser = 2;
     try {
         $bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
+        $idUser = $_SESSION["idUser"];
         // We create our ticket
         $req = $bdd->prepare('INSERT INTO TICKETS(idUser, category, subCategory, status, positionX, positionY, description) 
                                         VALUES(:idUser, :category, :subCategory, :status, :positionX, :positionY, :description)');
