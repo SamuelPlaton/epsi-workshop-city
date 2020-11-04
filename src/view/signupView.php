@@ -25,18 +25,6 @@
         <input type="text" id="phoneNumber" name="phoneNumber" placeholder="+33 6 ..." class="form-control w-full mx-4 mx-auto border-solid border-2 border-gray rounded-lg p-1" required>
     </div>
     <div class="form-group flex flex-col my-2">
-        <label for="birthDate" class="form-control-label text-lg mb-2">Date de naissance</label>
-        <input type="date" id="birthDate" name="birthDate" placeholder=" " class="form-control w-full mx-4 mx-auto border-solid border-2 border-gray rounded-lg p-1" >
-    </div>
-    <div class="form-group flex flex-col my-2">
-        <label for="gender" class="form-control-label text-lg mb-2">Genre</label>
-        <select onchange="openPopup()" name="gender" id="gender" class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
-            <option value='male'> Homme </option>
-            <option value='female'> Femme </option>
-            <option value='other'> Autre </option>
-        </select>
-    </div>
-    <div class="form-group flex flex-col my-2">
         <label for="mailAddress" class="form-control-label text-lg mb-2">Mail</label>
         <input type="email" id="mailAddress" name="mailAddress" placeholder="(Optionnel)" class="form-control w-full mx-4 mx-auto border-solid border-2 border-gray rounded-lg p-1">
     </div>
@@ -63,9 +51,8 @@
             }
         </script>
     </div>
-    <br>
     <div class="form-group flex flex-col">
-        <label for="title" class="form-control-label text-lg mb-2">Entrez le mot de passe à nouveau</label>
+        <label for="title" class="form-control-label text-md mb-2">Entrez le mot de passe à nouveau</label>
         <div class="flex flex-row justify-between w-full mx-4 mx-auto">
         <input type="password" id="typepass2" name="password2" placeholder=" " class="form-control flex-grow border-solid border-2 border-gray rounded-lg p-1" required />
             <button type="button" onclick="Toggle2()" class="mx-2 w-6">
@@ -88,11 +75,10 @@
         </script>
     </div>
     <br>
-    <br>
     <div class="form-group flex flex-col">
-        <label for="inline-checkbox1" class="form-check-label ">
-            <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" value="option1" class="form-check-input" required>
-            En cochant cette case, j'autorise l'application à exploiter mes coordonnées GPS pour localiser mes reports.
+        <label for="inline-checkbox1" class="form-check-label flex flex-row">
+            <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" value="option1" class="form-check-input mx-2" required>
+            <p class="text-xs"> En cochant cette case, j'autorise l'application à exploiter mes coordonnées GPS pour localiser mes reports. </p>
         </label>
     </div>
     <div class="text-center mt-5">
