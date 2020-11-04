@@ -11,9 +11,6 @@
         <?php include('components/closeTicketsPopup.php')?>
         <form id="post-ticket-form" action="" method="post" enctype="multipart/form-data" class="m-5 lg:w-1/2 lg:mx-auto">
             <div class="form-group flex flex-col my-2">
-                <input type="text" id="title" name="title" placeholder="Entrez le titre du ticket..." class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
-            </div>
-            <div class="form-group flex flex-col my-2">
                 <label for="category" class=" form-control-label lg:text-lg mb-2">Sélectionnez une catégorie</label>
                 <select onchange="openPopup()"" name="category" id="category" class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
                     <?php foreach($categories as $row){
@@ -38,12 +35,6 @@
             <div class="form-group flex flex-col my-2">
                 <label for="file-multiple-input[]" class=" form-control-label lg:text-lg mb-2">Ajoutez jusqu'à 5 images (10 Mo Max)</label>
                 <input type="file" accept="image/*" id="file-multiple-input[]" name="file-multiple-input[]" multiple class="form-control-file" capture required>
-            </div>
-            <div class="form-group flex flex-col my-2">
-                <label for="inline-checkbox1" class="form-check-label text-sm">
-                    <input type="checkbox" id="inline-checkbox1" name="inline-checkbox1" value="option1" class="form-check-input" required>
-                    En cochant cette case, je certifie sur l'honneur la véracité de mes propos et j'accepte de fournir mes coordonnées GPS.
-                </label>
             </div>
             <input type="text" id="positionX" name="positionX" class="hidden" required>
             <input type="text" id="positionY" name="positionY" class="hidden" required>

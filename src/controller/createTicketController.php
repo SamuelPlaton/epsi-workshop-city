@@ -6,11 +6,10 @@ if( $_POST && isset($_POST["submit-button"])) {
     try {
         $bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
         // We create our ticket
-        $req = $bdd->prepare('INSERT INTO TICKETS(idUser, title, category, subCategory, status, positionX, positionY, description) 
-                                        VALUES(:idUser, :title, :category, :subCategory, :status, :positionX, :positionY, :description)');
+        $req = $bdd->prepare('INSERT INTO TICKETS(idUser, category, subCategory, status, positionX, positionY, description) 
+                                        VALUES(:idUser, :category, :subCategory, :status, :positionX, :positionY, :description)');
         $req->execute(array(
             'idUser' => $idUser,
-            'title' => $_POST["title"],
             'category' => $_POST["category"],
             'subCategory' => $_POST["subcategory"],
             'status' => 'pending',
@@ -41,11 +40,10 @@ if( $_POST && isset($_POST["submit-button"])) {
         }
         // update path
         $req = $bdd->prepare('UPDATE TICKETS SET DATA=:data WHERE ID='.$ticketId);
-        echo json_encode($req);
         $req->execute(array(
             'data' => $path
         ));
-
+        $redirect = true;
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
