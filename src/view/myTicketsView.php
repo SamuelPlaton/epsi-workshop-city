@@ -19,7 +19,10 @@ if($pendingTicketsCount > 0){
     <?php foreach ($userTickets as $key => $ticket) {
         echo
         '<div class="flex flex-col items-center bg-white rounded-lg shadow-lg m-4">
-            <p class="font-semibold mt-2 mx-2"> '.$categoriesArray[$ticket['category']].'</p>
+            <div class="flex flex-row items-center mt-2 mx-2 w-full">
+                <p class="font-semibold w-full text-center ml-6"> '.$categoriesArray[$ticket['category']].'</p>
+                <p class="mr-2" style="color: #63c76a"> +'.$upvotesArray[$ticket['id']].'</p>
+               </div>
             <p class="text-sm mx-2"> '.$subCategoriesArray[$ticket['subCategory']].'</p>
             <p class="text-sm mx-2 text-gray-dark"> '.$statusArray[$ticket['status']].'</p>
             <div class="flex flex-row flex-wrap">';
@@ -45,7 +48,10 @@ echo '<h1 class="mt-5 mx-5 font-semibold"> Tickets fermés ('.$finishedTicketsCo
     <?php foreach ($userSolvedTickets as $key => $ticket) {
         echo
             '<div class="flex flex-col items-center bg-white rounded-lg shadow-lg m-4">
-            <p class="font-semibold mt-2 mx-2"> '.$categoriesArray[$ticket['category']].'</p>
+            <div class="flex flex-row items-center mt-2 mx-2 w-full">
+                <p class="font-semibold w-full text-center ml-6"> '.$categoriesArray[$ticket['category']].'</p>
+                <p class="mr-2" style="color: #63c76a"> +'.$upvotesArray[$ticket['id']].'</p>
+            </div>
             <p class="text-sm mx-2"> '.$subCategoriesArray[$ticket['subCategory']].'</p>
             <p class="text-sm mx-2 text-gray-dark"> '.$statusArray[$ticket['status']].'</p>
             <div class="flex flex-row flex-wrap">';

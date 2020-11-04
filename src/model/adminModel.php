@@ -21,6 +21,17 @@ foreach ($countSolvedTickets as $row){
     $finishedTicketsCount = $row[0];
 }
 
+// Listing upvotes
+$userForCountTickets = $bdd->query('SELECT ID FROM TICKETS');
+$upvotesArray = array();
+foreach ($userForCountTickets as $row){
+    $id = $row[0];
+    $counts = $bdd->query('SELECT COUNT(*) FROM TICKET_USER_VOTES WHERE TICKET_USER_VOTES.IDTICKET='.$id);
+    foreach ($counts as $count){
+        $upvotesArray[$id] = $count[0];
+    }
+}
+
 $categoriesRequest = $bdd->query('SELECT * FROM TICKET_CATEGORIES');
 $categoriesArray = array();
 foreach ($categoriesRequest as $row){
