@@ -9,8 +9,20 @@ $title = "Mes tickets";
 
 $bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
 
-$userTickets = $bdd->query('SELECT * FROM TICKETS WHERE TICKETS.STATUS="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"]);
+$userTickets = $bdd->query('SELECT * FROM TICKETS WHERE TICKETS.STATUS="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"].' ORDER BY TICKETS.CREATIONDATE ASC');
 $userSolvedTickets = $bdd->query('SELECT * FROM TICKETS WHERE TICKETS.STATUS!="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"]);
+
+
+$userCountTickets = $bdd->query('SELECT COUNT(*) FROM TICKETS WHERE TICKETS.STATUS="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"]);
+foreach ($userCountTickets as $row){
+    $pendingTicketsCount = $row[0];
+}
+$userCountSolvedTickets = $bdd->query('SELECT COUNT(*) FROM TICKETS WHERE TICKETS.STATUS!="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"]);
+foreach ($userCountSolvedTickets as $row){
+    $finishedTicketsCount = $row[0];
+}
+
+
 $categoriesRequest = $bdd->query('SELECT * FROM TICKET_CATEGORIES');
 $categoriesArray = array();
 foreach ($categoriesRequest as $row){
