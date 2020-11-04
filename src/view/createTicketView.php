@@ -36,8 +36,8 @@
                 <textarea name="description" id="description" rows="3" placeholder="Entrez une description..." class="form-control lg:w-2/3 border-solid border-2 border-gray rounded-lg p-1"></textarea>
             </div>
             <div class="form-group flex flex-col my-2">
-                <label for="file-multiple-input" class=" form-control-label lg:text-lg mb-2">Ajoutez jusqu'à 5 images</label>
-                <input type="file" accept="image/*" id="file-multiple-input" name="file-multiple-input" multiple="" class="form-control-file" capture>
+                <label for="file-multiple-input[]" class=" form-control-label lg:text-lg mb-2">Ajoutez jusqu'à 5 images (10 Mo Max)</label>
+                <input type="file" accept="image/*" id="file-multiple-input[]" name="file-multiple-input[]" multiple class="form-control-file" capture required>
             </div>
             <div class="form-group flex flex-col my-2">
                 <label for="inline-checkbox1" class="form-check-label text-sm">
