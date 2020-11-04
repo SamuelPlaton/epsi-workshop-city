@@ -86,7 +86,7 @@
             Créer mon compte
         </button>
     </div>
-    <a href="signinModel.php" class="text-xs underline my-4" > Je n'ai pas de compte </a>
+    <a href="signinModel.php" class="text-xs underline my-4" > J'ai déjà un compte </a>
 </form>
 </body>
 </html>

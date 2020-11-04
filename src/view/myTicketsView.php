@@ -84,7 +84,11 @@ $tickets = [
 <!-- Toastify Script -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <?php include('components/header.php')?>
-<h1 class="mt-5 mx-5"> Tickets en cours</h1>
+<?php
+if($pendingTicketsCount > 0){
+    echo '<h1 class="mt-5 mx-5 font-semibold"> Tickets en cours ('.$pendingTicketsCount.')</h1>';
+}
+?>
 <div class="content flex flex-row flex-wrap justify-center">
     <?php foreach ($userTickets as $key => $ticket) {
         echo
@@ -102,12 +106,15 @@ $tickets = [
             echo '
             </div>
             <form id="cancel-ticket" name="cancel-ticket" method="post" >
-                <button type="submit" id="cancel-button" name="cancel-button" class="btn py-1 px-2 my-2 rounded-lg text-white" style="background-color: #ef0a23"> Annuler</button>
+                <button type="submit" id="cancel-button" value="'.$ticket["id"].'" name="cancel-button" class="btn py-1 px-2 my-2 rounded-lg text-white" style="background-color: #ef0a23"> Annuler</button>
             </form>
         </div>
     ';}?>
 </div>
-<h1 class="mt-5 mx-5"> Tickets fermés</h1>
+<?php if($finishedTicketsCount > 0){
+echo '<h1 class="mt-5 mx-5 font-semibold"> Tickets fermés ('.$finishedTicketsCount.')</h1>';
+}
+?>
 <div class="content flex flex-row flex-wrap justify-center">
     <?php foreach ($userSolvedTickets as $key => $ticket) {
         echo
