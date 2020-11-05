@@ -65,7 +65,7 @@ AND tickets.subCategory = ticket_subcategories.identifier ORDER BY tickets.creat
 }
 
 if(isset($_POST['long']) && isset($_POST['lat'])){
-    $t = getCloseTickets(['long' => $_POST['long'], 'lat' => $_POST['lat']], 50);
+    $t = getCloseTickets(['long' => $_POST['long'], 'lat' => $_POST['lat']], 5000);
     $t = array_filter($t, function($v) {
     	return $v['status'] == 'pending';
     });
