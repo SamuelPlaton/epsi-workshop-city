@@ -1,7 +1,7 @@
 <?php
 
 
-// If form is posted, send a ticket to the database
+// Cancel a ticket
 if ($_POST && isset($_POST["cancel-button"])) {
     try {
         $bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
