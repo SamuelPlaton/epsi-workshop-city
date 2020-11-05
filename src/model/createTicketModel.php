@@ -3,6 +3,7 @@
 session_start();
 
 require('../controller/createTicketController.php');
+require('../controller/getTicketsProximity.php');
 // If user is created his account, redirect him
 if(isset($redirect) && $redirect == true){
     echo '<script>
@@ -10,6 +11,8 @@ if(isset($redirect) && $redirect == true){
     </script>
     ';
 }
+
+$closeTickets = 5;
 
 $bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
 $categories = $bdd->query('SELECT * FROM TICKET_CATEGORIES');

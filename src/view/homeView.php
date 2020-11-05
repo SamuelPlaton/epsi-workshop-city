@@ -1,11 +1,3 @@
-<?php
-$tickets = [
-        [ 'nature' => 'Sécurité routière', 'probleme' => 'Nid-de-poule', 'imgs' => [ 'https://ste-foytoyota.com/wp-content/uploads/2017/05/4917.jpg' ] ],
-        [ 'nature' => 'Végétal', 'probleme' => 'Plante morte', 'imgs' => [ 'https://astucesdegrandmere.net/wp-content/uploads/2018/11/plantes-fan%C3%A9es-mortes.png' ] ],
-        [ 'nature' => 'Transport', 'probleme' => 'Abribus vandalisé', 'imgs' => [ 'https://cdn-s-www.leprogres.fr/images/82727D23-9236-4A1F-8694-A2BA802883B9/NW_raw/l-abribus-avenue-de-montlouis-a-ete-vandalise-photo-progres-virginie-founes-1584625106.jpg' ] ],
-        [ 'nature' => 'Mobilier urbain', 'probleme' => 'Banc tagué', 'imgs' => [ 'https://www.bancspublics.net/images/banc_tag/tag_paris/banc-graffiti_paris_borddeseine_r11.jpg' ] ],
-]
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -97,7 +89,7 @@ $tickets = [
 -webkit-box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);
 box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
-            <a href="#" style="padding: 5px 10px; width: 100%;background: #63c76a;color: white;display: block;text-align: center">
+            <a href="createTicketModel.php" style="padding: 5px 10px; width: 100%;background: #63c76a;color: white;display: block;text-align: center">
                 Créer un ticket
             </a>
             <a href="myTicketsModel.php" style="padding: 5px 10px; width: 100%;background: #2980b9;color: white;display: block;text-align: center;margin-top: 5px">

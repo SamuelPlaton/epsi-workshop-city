@@ -49,7 +49,16 @@
 
 <script>
     function openPopup(){
-        document.getElementById("tickets-close-popup").style.display = "block";
+        document.getElementById("tickets-close-popup").style.display = "block"; // Open popup
+        const tickets = document.getElementsByClassName('ticket-close');
+        for(var i = 0; i  < tickets.length; i++){ // Display none all tickets
+            tickets[i].style.display = "none"
+        }
+        const categorySelected = document.getElementById('category').value;
+        const ticketsToShow = document.getElementsByClassName(categorySelected); // Display only the category we want
+        for(var i = 0; i  < ticketsToShow.length; i++){
+            ticketsToShow[i].style.display = "block"
+        }
     }
 
     // Retrieve and settle geolocations
