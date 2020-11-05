@@ -78,7 +78,7 @@
 	<?php include('components/header.php')?>
     <div class="content">
         <div class="title">Tickets à proximité (50m)</div>
-        <div id="noTickets">Aucune ticket dans les alentours!</div>
+        <div id="noTickets">Aucun ticket dans les alentours!</div>
         <div class="row-cust" id="tickets">
             <!-- Généré par JS -->
         </div>
