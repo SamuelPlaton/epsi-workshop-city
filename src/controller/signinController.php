@@ -8,6 +8,11 @@ if ($_POST && isset($_POST["sign-in-button"])) {
         $bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
         $user = $bdd->query('SELECT ID, TOKEN, IDADMIN FROM USERS WHERE PHONENUMBER='.$_POST["phoneNumber"].' LIMIT 1');
         $token = '';
+
+        if(!$user){
+            return false;
+        }
+        
         foreach ($user as $row){
             if($row["TOKEN"]){
                 $token = $row["TOKEN"];
