@@ -34,6 +34,7 @@ if(sizeof($tickets) > 0){
         }
     echo '
                 </div>';
+        echo '<p class="mx-2"> '.$ticket['description'].'</p>';
     echo '<div class="flex flex-col w-full mb-2 ml-2">
                 <p class="font-semibold text-sm"> Signalements : </p>';
     if($reportsArray[$ticket['id']]['missing'] ==! 0) echo '<p class="text-xs w-full">'.$reportsArray[$ticket['id']]['missing'].ngettext(' Ticket disparu', ' Tickets disparus', $reportsArray[$ticket['id']]['missing']).'</p>';

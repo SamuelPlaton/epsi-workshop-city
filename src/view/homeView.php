@@ -219,7 +219,7 @@ if(isset($errorReport) && $errorReport == true){
                         elem.append(`<div class="column" style="background:white">
                     <div style="padding:10px">
                         <div class="flex flex-row items-center mt-2 mx-2 w-full">
-                            <p class="font-semibold w-full text-center ml-6" >${v['cat_sentence']}</p>
+                            <p class="font-semibold w-full text-center ml-3" >${v['cat_sentence']}</p>
                             <p class="mr-2" style="color: #63c76a">+${v['upvotes']}</p>
                         </div>
                         <p style="text-align: center;font-size: 14px">${v['sub_sentence']}</p>
@@ -234,6 +234,7 @@ if(isset($errorReport) && $errorReport == true){
                         <div style="float: left">
                             <button onclick="openPopup(${v['id']})" type="button" name="report" class="btn-report"><span class="material-icons" style="vertical-align: middle;color:#f90c1c">flag</span></button>
                         </div>
+                        <p class="text-center"> ${v['description']}</p>
                         <div style="float: right">
                             <button name="vote" class="btn-vote"><span class="material-icons" style="vertical-align: middle;color:${color_plus_one}">exposure_plus_1</span></button>
                         </div>
