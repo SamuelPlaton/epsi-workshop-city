@@ -34,7 +34,7 @@ function getCloseTickets($position, $distance){
 		return intval($v['idTicket']);
 	}, $user_votes);
 
-	$req = $bdd->query("SELECT tickets.*, ticket_categories.sentence as 'cat_sentence', ticket_subcategories.sentence as 'sub_sentence' FROM `tickets`, ticket_subcategories, ticket_categories
+	$req = $bdd->query("SELECT tickets.*,  ticket_categories.sentence as 'cat_sentence', ticket_subcategories.sentence as 'sub_sentence' FROM `tickets`, ticket_subcategories, ticket_categories
 WHERE tickets.category = ticket_categories.identifier
 AND tickets.subCategory = ticket_subcategories.identifier ORDER BY tickets.creationdate DESC");
 	$req->execute();
@@ -53,6 +53,12 @@ AND tickets.subCategory = ticket_subcategories.identifier ORDER BY tickets.creat
 		} else {
 			$tickets[$k]['voted'] = false;
 		}
+        $id = $ticket['id'];
+        $counts = $bdd->query('SELECT COUNT(*) FROM TICKET_USER_VOTES WHERE TICKET_USER_VOTES.IDTICKET='.$id);
+        foreach ($counts as $count){
+            $tickets[$k]['upvotes'] = $count[0];
+        }
+
 	}
 
     return $tickets;
