@@ -76,6 +76,7 @@
 <!-- Toastify Script -->
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 	<?php include('components/header.php')?>
+    <?php include('components/reportPopup.php')?>
     <div class="content">
         <div class="title">Tickets à proximité (50m)</div>
         <div id="noTickets">Aucune ticket dans les alentours!</div>
@@ -85,7 +86,7 @@
         <div id="fullImage" class="fullImage" onclick="closeImage()" style="display: none">
             <img src="" id="fullImageSrc" />
         </div>
-        <div id="spacer" style="margin-top: 0">
+        <div id="spacer" class="mb-24">
         <div id="footer" style="position: fixed;bottom: 0;left:0;right:0;width: 100%;background: white;padding:10px;border-top:2px solid #63c76a;
 -webkit-box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);
 -moz-box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);
@@ -99,6 +100,31 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
         </div>
     </div>
 </body>
+<?php
+if(isset($errorReport) && $errorReport == true){
+    echo '<script>
+            Toastify({
+                text: "Ticket déjà signalé",
+                backgroundColor: "linear-gradient(to right, #f90c1c, #f31818)",
+                className: "error",
+                duration: 2000,
+                close: true,
+                }).showToast();
+            </script>';
+}else if(isset($errorReport) && $errorReport == false){
+    echo '<script>
+            Toastify({
+                text: "Ticket signalé",
+                backgroundColor: "linear-gradient(to right, #0071bb, #4a9ace)",
+                className: "success",
+                duration: 2000,
+                close: true,
+                }).showToast();
+            </script>';
+}
+?>
+
+<!-- JQuery Script -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script rel="script">
     var user_id = <?= $_SESSION['idUser'] ?>;
@@ -175,7 +201,7 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
                         }
                         for(var i = 0; i < v['nbImg']; i++) {
                             var src = v['data'] + i + '.jpg';
-                            imgSrc += `<img onclick="openImage('${src}')" src="${src}" alt="" style="max-width: 150px;max-height: 150px;height: 150px;width: 150px; display: inline-block" />`;
+                            imgSrc += `<img onclick="openImage('${src}')" src="${src}" alt="" class="object-cover" style="max-width: 150px;max-height: 150px;height: 150px;width: 150px; display: inline-block" />`;
                         }
                         var color_plus_one = 'black';
                         if (v['voted']) {
@@ -183,7 +209,10 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
                         }
                         elem.append(`<div class="column" style="background:white">
                     <div style="padding:10px">
-                        <p style="text-align: center;font-size: 16px;font-weight: bold">${v['cat_sentence']}</p>
+                        <div class="flex flex-row items-center mt-2 mx-2 w-full">
+                            <p class="font-semibold w-full text-center ml-6" >${v['cat_sentence']}</p>
+                            <p class="mr-2" style="color: #63c76a">+${v['upvotes']}</p>
+                        </div>
                         <p style="text-align: center;font-size: 14px">${v['sub_sentence']}</p>
                         <div style="text-align: center;margin-top: 10px">
                             ${imgSrc}
@@ -194,7 +223,7 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
 <form action="" method="post">
                         <input type="hidden" name="ticketId" value="${v['id']}">
                         <div style="float: left">
-                            <button name="report" class="btn-report"><span class="material-icons" style="vertical-align: middle;color:#f90c1c">flag</span></button>
+                            <button onclick="openPopup(${v['id']})" type="button" name="report" class="btn-report"><span class="material-icons" style="vertical-align: middle;color:#f90c1c">flag</span></button>
                         </div>
                         <div style="float: right">
                             <button name="vote" class="btn-vote"><span class="material-icons" style="vertical-align: middle;color:${color_plus_one}">exposure_plus_1</span></button>

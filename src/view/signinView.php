@@ -33,7 +33,6 @@
             if(password && phone){
                 document.getElementById("phoneNumber").value = phone;
                 document.getElementById("typepass").value = password;
-                console.log('before');
                 Toastify({
                     text: "Compte créée avec succès ",
                     backgroundColor: "linear-gradient(to right, #21ce2d, #63c76a)",

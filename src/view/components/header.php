@@ -7,7 +7,11 @@
             </svg>
         </button>
         <button type="button">
-            <img class="application-icon" src="../../public/images/icon.png" alt="icon logo" />
+            <?php if(isset($_SESSION['token'])){
+                echo '<a href="homeModel.php"><img class="application-icon" src="../../public/images/icon.png" alt="icon logo" /> </a>';
+            }else{
+                echo '<a href="signinModel.php"><img class="application-icon" src="../../public/images/icon.png" alt="icon logo" /> </a>';
+            } ?>
         </button>
     </div>
     <h1 class="text-white text-2xl"> <?php if(isset($title)) echo $title;?> </h1>
