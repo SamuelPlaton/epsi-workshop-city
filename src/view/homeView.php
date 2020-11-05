@@ -175,6 +175,15 @@ if(isset($errorReport) && $errorReport == true){
     function closeImage() {
         jQuery('#fullImage').css('display', 'none');
     }
+    function calculHeight() {
+        if ($("body").height() > $(window).height()) {
+            var heightFooter = $('#footer').height();
+            heightFooter += 30;
+            $('#spacer').css('margin-top', heightFooter+'px')
+        } else {
+            $('#spacer').css('margin-top', '0')
+        }
+    }
     function refreshTickets() {
         var coordsTest = { long: -1.548970890971788, lat: 47.19398987251469 }; // A utiliser lors des tests
         window.navigator.geolocation.getCurrentPosition(successCallback, console.log);
@@ -233,6 +242,7 @@ if(isset($errorReport) && $errorReport == true){
                     </div>
                 </div>`);
                     }
+                    calculHeight();
                 }
             })
         }

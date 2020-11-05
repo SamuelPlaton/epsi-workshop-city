@@ -12,7 +12,7 @@
         <form id="post-ticket-form" action="" method="post" enctype="multipart/form-data" class="m-5 lg:w-1/2 lg:mx-auto">
             <div class="form-group flex flex-col my-2">
                 <label for="category" class=" form-control-label lg:text-lg mb-2">Sélectionnez une catégorie</label>
-                <select onchange="openPopup()"" name="category" id="category" class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
+                <select onchange="openPopup()" name="category" id="category" class="form-control lg:w-1/3 border-solid border-2 border-gray rounded-lg p-1" required>
                     <?php foreach($categories as $row){
                         echo "<option value='".$row['identifier']."'>".$row['sentence']."</option>";
                     };

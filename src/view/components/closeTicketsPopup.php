@@ -2,6 +2,7 @@
     <div class="relative w-auto lg:w-1/2 z-50 bg-white my-12 mx-4 lg:mx-auto max-w-3xl rounded-lg border-solid border-2 border-gray">
         <div className='relative p-6 flex-auto'>
             <h3 class="text-center text-lg p-2"> Halte ! Assurez-vous que le ticket n'est pas encore posté </h3>
+            <div id="noTickets">Aucun ticket dans les alentours!</div>
             <div class="row-cust overflow-y-scroll" id="tickets" style="height: 70vh">
                 <!-- Généré par JS -->
             </div>
@@ -58,15 +59,25 @@
                     const elem = $("#tickets");
                     elem.empty();
                     data = JSON.parse(data);
+                    console.log(data)
                     if (data.length === 0) {
-                        // TODO : Afficher un message à l'utilisateur
+                        console.log('test!');
+                        jQuery('#noTickets').show();
                     }
                     for (var k in data) {
+                        jQuery('#noTickets').hide();
                         const v = data[k];
                         var imgSrc = '';
+                        if (v['nbImg'] > 2) {
+                            v['nbImg'] = 2; // On veut afficher que deux images maximum
+                        }
                         for(var i = 0; i < v['nbImg']; i++) {
                             var src = v['data'] + i + '.jpg';
                             imgSrc += `<img onclick="openImage('${src}')" src="${src}" alt="" class="object-cover" style="max-width: 150px;max-height: 150px;height: 150px;width: 150px; display: inline-block" />`;
+                        }
+                        var color_plus_one = 'black';
+                        if (v['voted']) {
+                            color_plus_one = '#27ae60';
                         }
                         elem.append(`<div class="`+data[k][4]+` ticket-close column hidden rounded-lg shadow-lg border-2 border-solid border-gray m-4">
                     <div class="rounded-lg shadow-lg">
@@ -79,7 +90,10 @@
                     <div style="width: 100%;height:1px;background: rgba(0,0,0,0.5)"></div>
                     <div style="padding: 10px">
                         <div style="float: right">
-                            <button class="btn-vote"><span class="material-icons" style="vertical-align: middle;color:black">exposure_plus_1</span></button>
+                            <form action="../model/homeModel.php" method="POST">
+                                <input type="hidden" value="${v['id']}" name="ticketId" />
+                                <button class="btn-vote" name="vote"><span class="material-icons" style="vertical-align: middle;color:${color_plus_one}">exposure_plus_1</span></button>
+                            </form>
                         </div>
                         <div style="clear:both"></div>
                     </div>
