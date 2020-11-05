@@ -78,6 +78,7 @@
 	<?php include('components/header.php')?>
     <div class="content">
         <div class="title">Tickets à proximité (50m)</div>
+        <div id="noTickets">Aucune ticket dans les alentours!</div>
         <div class="row-cust" id="tickets">
             <!-- Généré par JS -->
         </div>
@@ -123,6 +124,12 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
                 calculHeight();
             })
             calculHeight();
+            $('#tickets').on('click', '.btn-report', function(e){
+                console.log('vote !');
+            })
+            $('#tickets').on('click', '.btn-vote', function(e){
+                console.log('vote !');
+            })
             refreshTickets();
         });
         function calculHeight() {
@@ -157,13 +164,22 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
                     data = JSON.parse(data);
                     if (data.length === 0) {
                         // TODO : Afficher un message à l'utilisateur
+                        jQuery('#noTickets').show();
                     }
                     for (var k in data) {
+                        jQuery('#noTickets').hide();
                         const v = data[k];
                         var imgSrc = '';
+                        if (v['nbImg'] > 2) {
+                            v['nbImg'] = 2; // On veut afficher que deux images
+                        }
                         for(var i = 0; i < v['nbImg']; i++) {
                             var src = v['data'] + i + '.jpg';
                             imgSrc += `<img onclick="openImage('${src}')" src="${src}" alt="" style="max-width: 150px;max-height: 150px;height: 150px;width: 150px; display: inline-block" />`;
+                        }
+                        var color_plus_one = 'black';
+                        if (v['voted']) {
+                            color_plus_one = '#27ae60';
                         }
                         elem.append(`<div class="column" style="background:white">
                     <div style="padding:10px">
@@ -175,12 +191,15 @@ box-shadow: 0px -2px 14px -9px rgba(0,0,0,0.75);">
                     </div>
                     <div style="width: 100%;height:1px;background: rgba(0,0,0,0.5)"></div>
                     <div style="padding: 10px">
+<form action="" method="post">
+                        <input type="hidden" name="ticketId" value="${v['id']}">
                         <div style="float: left">
-                            <button class="btn-report"><span class="material-icons" style="vertical-align: middle;color:#f90c1c">flag</span></button>
+                            <button name="report" class="btn-report"><span class="material-icons" style="vertical-align: middle;color:#f90c1c">flag</span></button>
                         </div>
                         <div style="float: right">
-                            <button class="btn-vote"><span class="material-icons" style="vertical-align: middle;color:black">exposure_plus_1</span></button>
+                            <button name="vote" class="btn-vote"><span class="material-icons" style="vertical-align: middle;color:${color_plus_one}">exposure_plus_1</span></button>
                         </div>
+</form>
                         <div style="clear:both"></div>
                     </div>
                 </div>`);

@@ -16,7 +16,7 @@ function get_distance_m($lat1, $long1, $lat2, $long2) {
 
 // Call the database, retrieve all tickets and filter them by position
 function getCloseTickets($position, $distance){
-	$user_id = $_SESSION['token'];
+	$user_id = $_SESSION['idUser'];
 	try
 	{
 		$bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
@@ -25,6 +25,14 @@ function getCloseTickets($position, $distance){
 	{
 		die('Erreur : '.$e->getMessage());
 	}
+	$user_votes = $bdd->prepare("SELECT * FROM ticket_user_votes WHERE idUser = :userId");
+	$user_votes->execute([ 'userId' => $user_id ]);
+	$user_votes = $user_votes->fetchAll();
+
+	// On fait une liste des id de tickets votés
+	$tickets_id_voted = array_map(function ($v) {
+		return intval($v['idTicket']);
+	}, $user_votes);
 
 	$req = $bdd->query("SELECT tickets.*, ticket_categories.sentence as 'cat_sentence', ticket_subcategories.sentence as 'sub_sentence' FROM `tickets`, ticket_subcategories, ticket_categories
 WHERE tickets.category = ticket_categories.identifier
@@ -40,13 +48,18 @@ AND tickets.subCategory = ticket_subcategories.identifier ORDER BY tickets.creat
 		$fi = new FilesystemIterator($ticket['data'], FilesystemIterator::SKIP_DOTS);
 		$filesNumber = iterator_count($fi);
 		$tickets[$k]['nbImg'] = $filesNumber;
+		if (in_array($ticket['id'], $tickets_id_voted)) {
+			$tickets[$k]['voted'] = true;
+		} else {
+			$tickets[$k]['voted'] = false;
+		}
 	}
 
     return $tickets;
 }
 
 if(isset($_POST['long']) && isset($_POST['lat'])){
-    $t = getCloseTickets(['long' => $_POST['long'], 'lat' => $_POST['lat']], 2000);
+    $t = getCloseTickets(['long' => $_POST['long'], 'lat' => $_POST['lat']], 50);
     echo json_encode($t);
 }
 
