@@ -9,7 +9,7 @@ $title = "Mes tickets";
 
 $bdd = new PDO('mysql:host=localhost;dbname=cityplus;charset=utf8', 'root', '');
 
-$userTickets = $bdd->query('SELECT * FROM TICKETS WHERE TICKETS.STATUS="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"].' ORDER BY TICKETS.CREATIONDATE ASC');
+$userTickets = $bdd->query('SELECT * FROM TICKETS WHERE TICKETS.STATUS="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"].' ORDER BY TICKETS.CREATIONDATE DESC');
 $userSolvedTickets = $bdd->query('SELECT * FROM TICKETS WHERE TICKETS.STATUS!="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"]);
 
 $userCountTickets = $bdd->query('SELECT COUNT(*) FROM TICKETS WHERE TICKETS.STATUS="pending" AND TICKETS.IDUSER='.$_SESSION["idUser"]);

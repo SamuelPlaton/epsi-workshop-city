@@ -32,6 +32,13 @@ if($pendingTicketsCount > 0){
             echo '
                   <img src="'.$ticket["data"].$i.'.jpg" alt="ticket img" class=" w-32 h-32 m-2 object-cover shadow-lg"/>';
         }
+    echo '
+                </div>';
+    echo '<div class="flex flex-col w-full mb-2 ml-2">
+                <p class="font-semibold text-sm"> Signalements : </p>';
+    if($reportsArray[$ticket['id']]['missing'] ==! 0) echo '<p class="text-xs w-full">'.$reportsArray[$ticket['id']]['missing'].ngettext(' Ticket disparu', ' Tickets disparus', $reportsArray[$ticket['id']]['missing']).'</p>';
+    if($reportsArray[$ticket['id']]['abusive'] ==! 0) echo '<p class="text-xs w-full">'.$reportsArray[$ticket['id']]['abusive'].ngettext(' Ticket abusif', ' Tickets abusifs', $reportsArray[$ticket['id']]['abusive']).'</p>';
+    if($reportsArray[$ticket['id']]['incorrect'] ==! 0) echo '<p class="text-xs w-full">'.$reportsArray[$ticket['id']]['incorrect'].ngettext(' Element incorrect', ' Elements incorrects', $reportsArray[$ticket['id']]['incorrect']).'</p>';
         echo '
             </div>
             <div class="flex flex-row"> 
@@ -53,13 +60,13 @@ if($pendingTicketsCount > 0){
     <?php foreach ($solvedTickets as $key => $ticket) {
         echo
             '<div class="flex flex-col items-center bg-white rounded-lg shadow-lg m-4">
-            <div class="flex flex-row items-center mt-2 mx-2 w-full">
-                <p class="font-semibold w-full text-center ml-6"> '.$categoriesArray[$ticket['category']].'</p>
-                <p class="mr-2" style="color: #63c76a"> +'.$upvotesArray[$ticket['id']].'</p>
-            </div>
-            <p class="text-sm mx-2"> '.$subCategoriesArray[$ticket['subCategory']].'</p>
-            <p class="text-sm mx-2 text-gray-dark"> '.$statusArray[$ticket['status']].'</p>
-            <div class="flex flex-row flex-wrap">';
+                <div class="flex flex-row items-center mt-2 mx-2 w-full">
+                    <p class="font-semibold w-full text-center ml-6"> '.$categoriesArray[$ticket['category']].'</p>
+                    <p class="mr-2" style="color: #63c76a"> +'.$upvotesArray[$ticket['id']].'</p>
+                </div>
+                <p class="text-sm mx-2"> '.$subCategoriesArray[$ticket['subCategory']].'</p>
+                <p class="text-sm mx-2 text-gray-dark"> '.$statusArray[$ticket['status']].'</p>
+                <div class="flex flex-row flex-wrap">';
         $fi = new FilesystemIterator($ticket['data'], FilesystemIterator::SKIP_DOTS);
         $filesNumber = iterator_count($fi);
         for($i = 0; $i < $filesNumber; $i++){
@@ -67,6 +74,13 @@ if($pendingTicketsCount > 0){
                   <img src="'.$ticket["data"].$i.'.jpg" alt="ticket img" class=" w-32 h-32 m-2 object-cover shadow-lg"/>';
         }
         echo '
+                </div>';
+        echo '<div class="flex flex-col w-full mb-2 ml-2">
+                <p class="font-semibold text-sm"> Signalements : </p>';
+        if($reportsArray[$ticket['id']]['missing'] ==! 0) echo '<p class="text-xs w-full">'.$reportsArray[$ticket['id']]['missing'].ngettext(' Ticket disparu', ' Tickets disparus', $reportsArray[$ticket['id']]['missing']).'</p>';
+        if($reportsArray[$ticket['id']]['abusive'] ==! 0) echo '<p class="text-xs w-full">'.$reportsArray[$ticket['id']]['abusive'].ngettext(' Ticket abusif', ' Tickets abusifs', $reportsArray[$ticket['id']]['abusive']).'</p>';
+        if($reportsArray[$ticket['id']]['incorrect'] ==! 0) echo '<p class="text-xs w-full">'.$reportsArray[$ticket['id']]['incorrect'].ngettext(' Element incorrect', ' Elements incorrects', $reportsArray[$ticket['id']]['incorrect']).'</p>';
+        echo'
             </div>
         </div>
     ';}?>
