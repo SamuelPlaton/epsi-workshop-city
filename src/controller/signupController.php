@@ -11,7 +11,8 @@ if( $_POST && isset($_POST["sign-up-button"])) {
             'phoneNumber' => $_POST["phoneNumber"],
             'mailAddress' => $_POST["mailAddress"],
             'token' => password_hash($_POST["password"], PASSWORD_DEFAULT),
-        ));
+        ))
+        ;
         $redirect = true;
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
