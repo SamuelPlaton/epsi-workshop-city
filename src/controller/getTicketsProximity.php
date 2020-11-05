@@ -41,23 +41,15 @@ AND tickets.subCategory = ticket_subcategories.identifier ORDER BY tickets.creat
 		$filesNumber = iterator_count($fi);
 		$tickets[$k]['nbImg'] = $filesNumber;
 	}
-    /*if(isset($_POST['long']) && isset($_POST['lat'])){
-        echo json_encode($tickets);
-    }else{
-        return $tickets;
-    }*/
+
     return $tickets;
-    //echo json_encode($tickets);
 }
 
-//getCloseTickets(['long' => $_POST['long'], 'lat' => $_POST['lat']], 30000);
-
 if(isset($_POST['long']) && isset($_POST['lat'])){
-    $t = getCloseTickets(['long' => $_POST['long'], 'lat' => $_POST['lat']], 30000);
+    $t = getCloseTickets(['long' => $_POST['long'], 'lat' => $_POST['lat']], 2000);
     echo json_encode($t);
 }
 
-// If is admin, used to get city's
 if(isset($_SESSION['idAdmin'])){
     try
     {
