@@ -11,8 +11,8 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <?php include('components/header.php')?>
 <?php
-if($pendingTicketsCount > 0){
-    echo '<h1 class="mt-5 mx-5 font-semibold"> Tickets en cours ('.$pendingTicketsCount.')</h1>';
+if(sizeof($tickets) > 0){
+    echo '<h1 class="mt-5 mx-5 font-semibold"> Tickets en cours ('.sizeof($tickets).')</h1>';
 }
 ?>
 <div class="content flex flex-row flex-wrap justify-center">
@@ -52,8 +52,8 @@ if($pendingTicketsCount > 0){
         </div>
     ';}?>
 </div>
-<?php if($finishedTicketsCount > 0){
-    echo '<h1 class="mt-5 mx-5 font-semibold"> Tickets fermés ('.$finishedTicketsCount.')</h1>';
+<?php if(sizeof($solvedTickets) > 0){
+    echo '<h1 class="mt-5 mx-5 font-semibold"> Tickets fermés ('.sizeof($solvedTickets).')</h1>';
 }
 ?>
 <div class="content flex flex-row flex-wrap justify-center">
@@ -85,6 +85,59 @@ if($pendingTicketsCount > 0){
         </div>
     ';}?>
 </div>
+
+<script rel="script">
+    var user_id = <?= $_SESSION['idUser'] ?>;
+
+    function refreshTickets() {
+        var coordsTest = { long: -1.548970890971788, lat: 47.19398987251469 }; // A utiliser lors des tests
+        window.navigator.geolocation.getCurrentPosition(successCallback, console.log);
+        function successCallback(cb){
+            var coordsUser = { long: cb.coords.longitude, lat: cb.coords.latitude };
+            jQuery.ajax({
+                type: "post",
+                url: "../controller/getTicketsProximity.php",
+                data: coordsUser,
+                success: function(data) {
+                    const elem = $("#tickets");
+                    elem.empty();
+                    data = JSON.parse(data);
+                    if (data.length === 0) {
+                        // TODO : Afficher un message à l'utilisateur
+                    }
+                    for (var k in data) {
+                        const v = data[k];
+                        var imgSrc = '';
+                        for(var i = 0; i < v['nbImg']; i++) {
+                            var src = v['data'] + i + '.jpg';
+                            imgSrc += `<img onclick="openImage('${src}')" src="${src}" alt="" style="max-width: 150px;max-height: 150px;height: 150px;width: 150px; display: inline-block" />`;
+                        }
+                        elem.append(`<div class="column" style="background:white">
+                    <div style="padding:10px">
+                        <p style="text-align: center;font-size: 16px;font-weight: bold">${v['cat_sentence']}</p>
+                        <p style="text-align: center;font-size: 14px">${v['sub_sentence']}</p>
+                        <div style="text-align: center;margin-top: 10px">
+                            ${imgSrc}
+                        </div>
+                    </div>
+                    <div style="width: 100%;height:1px;background: rgba(0,0,0,0.5)"></div>
+                    <div style="padding: 10px">
+                        <div style="float: left">
+                            <button class="btn-report"><span class="material-icons" style="vertical-align: middle;color:#f90c1c">flag</span></button>
+                        </div>
+                        <div style="float: right">
+                            <button class="btn-vote"><span class="material-icons" style="vertical-align: middle;color:black">exposure_plus_1</span></button>
+                        </div>
+                        <div style="clear:both"></div>
+                    </div>
+                </div>`);
+                    }
+                }
+            })
+        }
+    }
+</script>
+
 </body>
 </html>
 
