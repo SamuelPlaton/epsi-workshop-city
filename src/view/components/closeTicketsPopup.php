@@ -78,9 +78,6 @@
                     </div>
                     <div style="width: 100%;height:1px;background: rgba(0,0,0,0.5)"></div>
                     <div style="padding: 10px">
-                        <div style="float: left">
-                            <button class="btn-report"><span class="material-icons" style="vertical-align: middle;color:#f90c1c">flag</span></button>
-                        </div>
                         <div style="float: right">
                             <button class="btn-vote"><span class="material-icons" style="vertical-align: middle;color:black">exposure_plus_1</span></button>
                         </div>
