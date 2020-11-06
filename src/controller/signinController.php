@@ -13,7 +13,6 @@ if ($_POST && isset($_POST["sign-in-button"])) {
             return false;
         }
 
-
         foreach ($user as $row){
             if($row["TOKEN"]){
                 $name = $row["LASTNAME"];
